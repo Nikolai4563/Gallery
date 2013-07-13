@@ -1,0 +1,11 @@
+.category-select {
+  display: none;
+}
+.select-image {
+  display: inline-block;
+}
+.category-select.show {
+  display: block;
+}
+#draggable {width: 150px; height: 150px; padding: 0.5em;}
+#drappable {width: 100%; min-height: 1000px; background-color: grey;}

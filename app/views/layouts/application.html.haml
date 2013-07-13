@@ -13,6 +13,8 @@
       %nav.navbar-inner
         .container
           = render 'layouts/navigation'
+          = link_to '/auth/facebook', :class => 'facebook pull-right' do
+            = image_tag '/login-with-facebook.png', :alt => 'Facebook'
     #main{:role => "main"}
       .container
         .content
@@ -21,5 +23,3 @@
               = render 'layouts/messages'
               = yield
           %footer
-      / ! end of .container
-    / ! end of #main

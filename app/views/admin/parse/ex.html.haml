@@ -1,0 +1,23 @@
+.row
+  .span7
+    - @img_array.each do |img|
+      .select-image.draggable
+        = image_tag img, :class => 'image'
+        %select.category-select
+          = options_from_collection_for_select(@category, :id, :name)
+  .span10
+    .category.alcohol
+      %h3
+        Alcohol
+    .category.cats
+      %h3
+        Cats
+    .category.christmas
+      %h3
+        Christmas
+    .category.ruby
+      %h3
+        Ruby
+    .category.tits
+      %h3
+        Tits

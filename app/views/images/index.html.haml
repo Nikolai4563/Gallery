@@ -1,0 +1,29 @@
+%h1
+  Gallery Tits
+
+  .row
+    .span6
+      #main-menu
+        = link_to t('.all'), categories_path
+        - @categories.each do |category|
+          = link_to category.name, category_path(category.id)
+
+      = paginate @images
+      - @images.each do |image|
+        .image-block
+          = image_tag image.url
+          = image_tag '/like.png', :class => 'likes', :id => image.id
+          = image.likes_count
+
+    .span6
+      Comments
+      .comment-block
+        - @images.each do |image|
+          - image.comments.each do |comment|
+            = comment.body
+
+          = form_for [image, Comment.new], :html => {:class => 'form-inline'} do |f|
+            .input-append
+              = f.text_area :body, style: 'height:39px; width:650px', :placeholder => 'Message'
+              = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
+

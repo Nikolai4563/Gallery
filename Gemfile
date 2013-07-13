@@ -6,12 +6,19 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.3.0'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
 gem 'pg'
 gem 'simple_form'
+gem 'carrierwave'
+gem 'kaminari'
+gem 'omniauth-facebook'
+gem 'nokogiri'
+gem 'activeadmin'
+gem 'curb'
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
