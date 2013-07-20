@@ -1,17 +1,17 @@
 class ImagesController < ApplicationController
 
   def index
-
-    @images = Image.page(params[:page]).per(5)
-    @categories = Category.all
+    if params[:comment]
+      @images = Image.order('comments_count DESC').page(params[:page]).per(5)
+    else
+      @images = Image.order('likes_count DESC').page(params[:page]).per(5)
+    end
 
     session[:return_to] = request.fullpath
-    #url = 'http://api.jquery.com/ready/'
-    #doc = Nokogiri::HTML(open(url))
-    #logger.info doc.at_css("h2 .logo a").attr('title')
   end
   def show
-
+    @image = Image.find(params[:id])
+    @comments = @image.comments.order('created_at DESC').page(params[:page]).per(4)
   end
 
 end

@@ -1,0 +1,37 @@
+.row
+  .span6
+    .show-image
+      = image_tag @image.url
+      - if current_user
+        .like-block
+          %span.count-like
+            = @image.likes_count
+          - if current_user.likes.where(:image_id => @image.id).blank?
+            .likes{:id => @image.id}
+          - else
+            .likes.dislike{:id => @image.id}
+  .span6
+    #comments
+      %h3
+        Comments
+      - @comments.each do |comment|
+        .comment-block
+          - if !comment.commentable.image.blank?
+            = image_tag comment.commentable.image, :class => 'avatar'
+          - else
+            = image_tag '/avatar.gif', :class => 'avatar'
+          .comment-info
+            %span.comment-user
+              Comment by
+              = comment.commentable.name
+            %span.comment-date
+              Date
+              = comment.created_at.strftime("%d %B %Y %H:%M")
+          .comment
+            = comment.body
+      = paginate @comments
+    .comment-form
+      = form_for [@image, Comment.new], :remote => true, :html => {:class => 'form-inline'} do |f|
+        .input-append
+          = f.text_area :body, :placeholder => 'Message'
+          = f.submit 'Add comment', class: 'btn btn-primary pull-right', id: 'comment-button'

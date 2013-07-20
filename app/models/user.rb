@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :likes, :dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
-
-
+  has_many :events, :as => :eventable, :dependent => :destroy
+  has_many :subscribes
+  has_many :categories, through: :subscribes
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :uid, :nickname, :image, :provider, :captcha, :captcha_key
-  
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :uid, :image, :provider, :captcha, :captcha_key
+
+
 end

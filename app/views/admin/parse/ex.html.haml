@@ -6,18 +6,9 @@
         %select.category-select
           = options_from_collection_for_select(@category, :id, :name)
   .span10
-    .category.alcohol
-      %h3
-        Alcohol
-    .category.cats
-      %h3
-        Cats
-    .category.christmas
-      %h3
-        Christmas
-    .category.ruby
-      %h3
-        Ruby
-    .category.tits
-      %h3
-        Tits
+    - @category.each do |category|
+      %div{:class => "category #{category.name}", :id => "#{category.id}"}
+        %h3
+        = category.name
+        %span.btn.btn-primary.send-images
+          Add this images

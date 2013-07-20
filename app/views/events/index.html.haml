@@ -1,0 +1,30 @@
+%table.table
+  %tr
+    %td
+      = t('user')
+    %td
+      = t('navigation')
+    %td
+      = t('sign in')
+    %td
+      = t('sign out')
+    %td
+      = t('like')
+    %td
+      = t('comment')
+  - @user.each do |user|
+    %tr
+      %td
+        = user.name
+      %td
+        = link_to t('Navigation'),event_navigation_path(user.id)
+      %td
+        = link_to t('Sign in'),event_sign_in_path(user.id)
+      %td
+        = link_to t('Sign out'),event_sign_out_path(user.id)
+      %td
+        = link_to t('Like'),event_like_path(user.id)
+      %td
+        = link_to t('Comments'),event_comment_path(user.id)
+
+

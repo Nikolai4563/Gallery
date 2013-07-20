@@ -3,3 +3,14 @@
 
 en:
   hello: "Hello world"
+  categories:
+    show:
+      category_name: 'Category name:'
+      sorted_comment: 'Sorted by comments'
+      sorted_like: 'Sorted by likes'
+  images:
+    index:
+      category_name: 'Category name:'
+      sorted_comment: 'Sorted by comments'
+      sorted_like: 'Sorted by likes'
+

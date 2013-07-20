@@ -9,6 +9,13 @@
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
+    #pusher-comment
+      %i.icon-remove.pull-right
+      .pusher-content
+    - if current_user
+      #live-chat
+        = image_tag '/liveChat.png', :class => 'img-button'
+        .chat-block
     .navbar.navbar-fixed-top
       %nav.navbar-inner
         .container
@@ -21,5 +28,9 @@
           .row
             .span12
               = render 'layouts/messages'
+              = render 'menu/menu'
               = yield
-          %footer
+    %footer
+      .container
+        %p
+          Designed and built with all the love in the world by Nikolai

@@ -1,5 +1,5 @@
 $(document).ready ->
-  $('.likes').click ->
+  $('.likes').click (event) ->
     image_id = $(this).attr('id')
     $.ajax(
       url: "/likes"
@@ -8,4 +8,5 @@ $(document).ready ->
       dataType: "json"
       type: "POST"
     ).success (response) ->
-      console.log image_id
+      $(event.currentTarget).toggleClass('dislike')
+      $('.count-like').text(response.count)

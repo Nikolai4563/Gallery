@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713112433) do
+ActiveRecord::Schema.define(:version => 20130716171658) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,6 +60,13 @@ ActiveRecord::Schema.define(:version => 20130713112433) do
     t.datetime "updated_at",       :null => false
   end
 
+  create_table "events", :force => true do |t|
+    t.integer  "eventable_id"
+    t.string   "eventable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+  end
+
   create_table "images", :force => true do |t|
     t.integer "category_id"
     t.integer "likes_count",    :default => 0
@@ -72,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20130713112433) do
     t.integer "image_id"
   end
 
+  create_table "navigations", :force => true do |t|
+    t.string "path"
+    t.float  "page_duration"
+    t.float  "view_duration"
+    t.float  "db_duration"
+  end
+
   create_table "simple_captcha_data", :force => true do |t|
     t.string   "key",        :limit => 40
     t.string   "value",      :limit => 6
@@ -80,6 +94,13 @@ ActiveRecord::Schema.define(:version => 20130713112433) do
   end
 
   add_index "simple_captcha_data", ["key"], :name => "idx_key"
+
+  create_table "subscribes", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -96,7 +117,6 @@ ActiveRecord::Schema.define(:version => 20130713112433) do
     t.datetime "updated_at",                             :null => false
     t.string   "name"
     t.string   "uid"
-    t.string   "nickname"
     t.string   "provider"
     t.string   "image"
   end

@@ -11,29 +11,249 @@
  *= require_self
  *= require_tree .
 */
-
+body {
+  background: url('/fon.jpg');
+}
 .content {
-  background-color: #eee;
   padding: 20px;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
-
+.navbar-inner {
+  background-color: rgba(249, 249, 249, 0.53)!important;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.27), rgba(242, 242, 242, 0.29))!important;
+}
+.images-container {
+  box-shadow: 0 0 6px 2px #6A6A6A;
+  padding-top: 15px;
+  background-color: rgba(213, 172, 91, 0.41);
+  border-radius: 10px;
+  text-align: center;
+}
 .image-block {
-  position: relative;
-  border: 1px solid black;
+  margin: 5px;
+  display: inline-block;
+  width: 150px;
+  height: 180px;
 }
-.image-block .likes {
-  position: absolute;
-    bottom: 10px;
-    right: 20px;
-  height: 65px;
-  width: 155px;
-  opacity: 0.7;
+.image-block img {
+  height: 128px;
+  width: 128px;
+  border-radius: 5px;
 
+}
+.image-block a {
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+  -webkit-transition: margin 0.2s ease-out;
+  -moz-transition: margin 0.2s ease-out;
+  -o-transition: margin 0.2s ease-out;
+  padding: 10px;
+  background-color: rgba(255, 0, 0, 0.31);
+}
+.image-block a:hover {
+    top: 5px;
+  background-color: rgba(17, 225, 0, 0.36);
+  -webkit-transition: background 0.5s ease-out;
+  -moz-transition: background 0.5s ease-out;
+  -o-transition: background 0.5s ease-out;
+}
+.image-info {
+  text-align: center;
+  width: 100%;
+  padding-top: 10px;
+  font-size: 12px;
+  color: #0f183a;
+}
+footer {
+  background-color: black;
+  color: white;
+  margin-bottom: 0px;
+}
+#sidebar {
+  margin-left: 10px;
+}
+.subscribe-block .subscribe {
+  background-image: url('/subscribe.png');
+  position: absolute;
+    top: -16px;
+    left: -30px;
+  height: 70px;
+  width: 79px;
+  -webkit-transition: left 0.5s ease-out;
+  -moz-transition: left 0.5s ease-out;
+  -o-transition: left 0.5s ease-out;
+}
+.subscribe-block .subscribe.describe {
+  background-image: url('/describe.png');
+    left: 225px;
+  -webkit-transition: left 0.5s ease-out;
+  -moz-transition: left 0.5s ease-out;
+  -o-transition: left 0.5s ease-out;
+}
+.subscribe-block {
+  cursor: pointer;
+  position: relative;
+  border: 3px solid rgba(0, 0, 0, 0.27);
+  border-radius: 8px 8px 8px 8px;
+  background: none repeat scroll 0 0 rgba(183, 182, 0, 0.28);
+  color: rgba(38, 38, 38, 0.97);
+  box-shadow: 1px 3px 6px rgba(102, 97, 97, 0.57);
+  font-weight: 600;
+  margin-bottom: 40px;
+  padding: 5px;
+  text-align: center;
+}
+.show-image {
+  background: none repeat scroll 0 0 #000000;
+  border: 5px solid #F1F1F1;
+  box-shadow: 1px 1px 9px #151313;
+  position: relative;
+  text-align: center;
+}
+.like-block {
+  position: absolute;
+    bottom: 35px;
+    right: 10px;
+}
+.like-block .count-like {
+  color: white;
+  display: block;
+  float: left;
+  font-size: 44px;
+  margin-top: 25px;
+  margin-right: 10px;
+  text-shadow: 3px 0 6px #B1B047;
+}
+.likes:hover {
+  opacity: 1;
+}
+.likes {
+  background-image: url('/like.png');
+  display: block;
+  cursor: pointer;
+  float: left;
+  height: 62px;
+  opacity: 0.8;
+  width: 120px;
+}
+#comment_body {
+  width: 100%;
+  height: 200px;
+}
+#comment-button {
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
+}
+.likes.dislike {
+  background-image: url('/dislike.png');
+}
+.comment-block {
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 1px 1px 7px rgba(17, 16, 16, 0.75);
+  margin: 10px 0;
+  background-color: rgba(179, 123, 14, 0.19);
+}
+.comment-block .comment-info {
+  font-style: italic;
+  font-weight: bold;
+  position: relative;
+  top: 10px;
+  display: inline-block;
+}
+.comment-info span {
+  display: block;
+  text-align: left;
+  padding-left: 5px;
+}
+.comment-block .avatar {
+  border: 3px solid #FFFFFF;
+  box-shadow: 1px 1px 6px rgba(4, 4, 4, 0.74);
+  margin: 20px 11px 20px 10px;
+}
+.comment-block .comment {
+  font-style: italic;
+  margin: 0 15px 0 85px;
+  padding: 0 45px 25px 0;
+}
+#comments {
+  margin: -20px 5px 35px;
+}
+.comment-form {
+  text-align: center;
+}
+.sort i {
+  margin-left: 5px;
+}
+.sort {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+h3.category-name {
+  font-style: italic;
+}
+#pusher-comment {
+  background: none repeat scroll 0 0 #FFFFFF;
+  box-shadow: 1px 1px 6px rgba(64, 64, 64, 0.73);
+  border-radius: 5px 5px 5px 5px;
+  left: 2px;
+  height: 250px;
+  opacity: 1;
+  padding: 5px;
+  position: fixed;
+  display: none;
+  top: 45px;
+  width: 240px;
+  z-index: 999;
+}
+#pusher-comment .pusher-content {
+  clear: both;
+  height: 230px;
+  margin-top: -4px;
+  overflow-x: auto;
+}
+#pusher-comment .comment {
+  border-bottom: 1px solid rgba(181, 181, 181, 0.57);
+  color: rgba(130, 87, 3, 0.75);
+  margin: 10px;
+  cursor: pointer;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+#pusher-comment .comment .author {
+  color: rgba(23, 13, 13, 0.68);
+  display: inline-block;
+  font-style: italic;
+  font-weight: bold;
+}
+#pusher-comment .comment .time-send {
+  display: inline-block;
+  color: rgba(23, 13, 13, 0.68);
+  float: right;
+  font-weight: bold;
+  margin-right: 4px;
+}
+#pusher-comment .comment .body {
+  display: block;
+  word-wrap: break-word;
+}
+.chat-block {
+  height: 300px;
+  width: 250px;
+  background-color: red;
+}
+#live-chat {
+  overflow: none;
+  position: fixed;
+    left: 0px;
+    top: 250px;
+}
+#live-chat .img-button {
+  position: absolute;
+    right: -37px;
+    top: 100px;
+  cursor: pointer;
 }

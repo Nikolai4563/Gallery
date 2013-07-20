@@ -1,29 +1,37 @@
-%h1
-  Gallery Tits
+.row
+  .span9.images-container
+    .sort
+      = link_to root_path(:comment => 'comment'), :class => 'btn btn-info'  do
+        = t('.sorted_comment')
+        %i.icon-comment
+      = link_to root_path, :class => 'btn btn-danger' do
+        = t('.sorted_like')
+        %i.icon-thumbs-up
 
-  .row
-    .span6
-      #main-menu
-        = link_to t('.all'), categories_path
-        - @categories.each do |category|
-          = link_to category.name, category_path(category.id)
-
-      = paginate @images
-      - @images.each do |image|
-        .image-block
-          = image_tag image.url
-          = image_tag '/like.png', :class => 'likes', :id => image.id
+    - @images.each do |image|
+      .image-block
+        = link_to image_tag(image.url.url(:thumb)), image_path(image.id)
+        .image-info
           = image.likes_count
+          %i.icon-thumbs-up
+          = image.comments_count
+          %i.icon-comment
+    = paginate @images
+  .span3
+    #sidebar
+      - @categories.each do |category|
+        .subscribe-block{:id => category.id}
+          = category.name.capitalize
+          %small
+            (
+            = category.images_count
+            )
+          - if current_user
+            - if !current_user.subscribes.where(:category_id => category.id).blank?
+              .subscribe.describe
+            - else
+              .subscribe
+          - else
+            .subscribe
 
-    .span6
-      Comments
-      .comment-block
-        - @images.each do |image|
-          - image.comments.each do |comment|
-            = comment.body
-
-          = form_for [image, Comment.new], :html => {:class => 'form-inline'} do |f|
-            .input-append
-              = f.text_area :body, style: 'height:39px; width:650px', :placeholder => 'Message'
-              = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
 

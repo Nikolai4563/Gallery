@@ -1,3 +1,43 @@
-= @category.name
-- @category.images.each do |image|
-  = image_tag image.url
+.row
+  .span9.images-container
+    %h3.category-name
+      = t('.category_name')
+      = @category.name.capitalize
+      %small
+        (
+        = @category.images_count
+        )
+    .sort
+      = link_to category_path(@category.id, :comment => 'comment'), :class => 'btn btn-info'  do
+        = t('.sorted_comment')
+        %i.icon-comment
+      = link_to category_path(@category.id), :class => 'btn btn-danger' do
+        = t('.sorted_like')
+        %i.icon-thumbs-up
+
+    - @images.each do |image|
+      .image-block
+        = link_to image_tag(image.url.url(:thumb)), image_path(image.id)
+        .image-info
+          = image.likes_count
+          %i.icon-thumbs-up
+          = image.comments_count
+          %i.icon-comment
+    = paginate @images
+  .span3
+
+    #sidebar
+      - @categories.each do |category|
+        .subscribe-block{:id => category.id}
+          = category.name.capitalize
+          %small
+            (
+            = category.images_count
+            )
+          - if current_user
+            - if !current_user.subscribes.where(:category_id => category.id).blank?
+              .subscribe.describe
+            - else
+              .subscribe
+          - else
+            .subscribe

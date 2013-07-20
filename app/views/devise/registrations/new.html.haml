@@ -5,7 +5,7 @@
   = f.input :name, :autofocus => true
   = f.input :email, :required => true
   = f.label :captcha
-  = f.simple_captcha :label => "Enter symbols.."
+  = show_simple_captcha :label => "Enter symbols.."
   = f.object.errors[:captcha].first
   = f.input :password, :required => true
   = f.input :password_confirmation, :required => true

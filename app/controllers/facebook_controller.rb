@@ -8,19 +8,15 @@ class FacebookController < ApplicationController
       user.email = "#{auth['provider']}@#{auth['info']['nickname']}.ru"
       user.provider = auth['provider']
       user.uid = auth['uid']
-      user.nickname = auth['info']['nickname']
+      user.name = auth['info']['nickname']
       user.image = auth['info']['image']
     end
-    sign_in @user
-    redirect_to session[:return_to]
+    if sign_in @user
+      ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
+    end
+
+    redirect_to root_path
 
   end
-
-  def destroy
-    reset_session
-    redirect_to :back
-  end
-
-
 
 end
