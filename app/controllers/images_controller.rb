@@ -1,6 +1,4 @@
 class ImagesController < ApplicationController
-  caches_page :index
-  cache_sweeper :image_sweeper
   def index
     if params[:comment]
       @images = Image.order('comments_count DESC').page(params[:page]).per(5)

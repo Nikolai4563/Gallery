@@ -1,4 +1,8 @@
 ActiveAdmin.register_page "Parse" do
+
+  controller do
+    protect_from_forgery :except => :ex # stop rails CSRF protection for this action
+  end
   page_action :ex, :method => :post do
 
     link = params[:parse][:url]
