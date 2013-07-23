@@ -7,18 +7,7 @@ ActiveAdmin.register_page "Parse" do
 
     link = params[:parse][:url]
 
-    #if !params[:send_image].blank?
-    #  array_img = params[:send_image]
-    #  array_img.each_with_index do |link, index|
-    #    curl =  Curl.get(link)
-    #    tempfile = Tempfile.new(Time.now.to_f.to_s)
-    #    tempfile.write curl.body_str.force_encoding('utf-8')
-    #    uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => link)
-    #    Image.create!(:url=>uploaded_file, :category_id =>params[:category_id])
-    #    expire_fragment 'subscribes_category'
-    #    expire_fragment 'menu'
-    #  end
-    #end
+
 
     if !link.blank?
       http = Curl.get(link) do |http|
@@ -42,7 +31,7 @@ ActiveAdmin.register_page "Parse" do
   page_action :save_img, :method => :post do
     array_img = params[:send_image]
     array_img.each_with_index do |link|
-      curl =  Curl.get(link)
+      curl = Curl.get(link)
       tempfile = Tempfile.new(Time.now.to_f.to_s)
       tempfile.write curl.body_str.force_encoding('utf-8')
       uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => link)
