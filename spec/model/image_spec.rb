@@ -1,8 +1,13 @@
 require 'spec_helper'
-describe Post do
+describe Image do
+
+  before do
+    @image = FactoryGirl.build(:image)
+  end
+
   it { should have_many(:comments) }
   it { should have_many(:likes) }
-  it { should belongs_to(:category) }
+  it { should belong_to(:category) }
   it { should have_many(:users).through(:likes) }
 
   it {have_db_column(:id).of_type(:integer)}
@@ -13,4 +18,11 @@ describe Post do
 
   it { should allow_mass_assignment_of(:url) }
   it { should allow_mass_assignment_of(:category_id) }
+
+  it { should validate_presence_of(:url)}
+
+  it 'is invalid without a firstname' do
+    Image.create(url: nil).should_not be_valid
+  end
+
 end
