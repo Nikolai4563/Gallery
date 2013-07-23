@@ -1,4 +1,4 @@
-%table.table
+%table.events-table
   - @events.each do |event|
     %tr
       %td
@@ -17,3 +17,4 @@
               = image_tag event.eventable.image.url, :width => 50, :height => 50
             %td
               = event.eventable.body
+

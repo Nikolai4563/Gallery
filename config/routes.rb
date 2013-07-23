@@ -9,7 +9,7 @@ Gallery::Application.routes.draw do
   get '/event/:user_id/navigation'    => 'events#show', :as => 'event_navigation'
   get '/event/:user_id/like'          => 'events#show', :as => 'event_like'
   get '/event/:user_id/comment'       => 'events#show', :as => 'event_comment'
-
+  get 'images/page/:page', to: 'images#index'
 
 
   resources :categories, only: [:show, :index]

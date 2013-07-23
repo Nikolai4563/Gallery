@@ -21,6 +21,7 @@ gem 'curb'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'pusher'
 gem 'rmagick'
+gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
@@ -37,6 +38,7 @@ group :production do
   gem 'unicorn'
 end
 group :test do
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'email_spec'
 end

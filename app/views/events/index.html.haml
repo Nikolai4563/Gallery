@@ -1,17 +1,4 @@
-%table.table
-  %tr
-    %td
-      = t('user')
-    %td
-      = t('navigation')
-    %td
-      = t('sign in')
-    %td
-      = t('sign out')
-    %td
-      = t('like')
-    %td
-      = t('comment')
+%table.events-table
   - @user.each do |user|
     %tr
       %td

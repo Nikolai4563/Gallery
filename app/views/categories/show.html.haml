@@ -11,7 +11,7 @@
       = link_to category_path(@category.id, :comment => 'comment'), :class => 'btn btn-info'  do
         = t('.sorted_comment')
         %i.icon-comment
-      = link_to category_path(@category.id), :class => 'btn btn-danger' do
+      = link_to category_path(@category.id, :like => 'like'), :class => 'btn btn-danger' do
         = t('.sorted_like')
         %i.icon-thumbs-up
 
@@ -25,19 +25,19 @@
           %i.icon-comment
     = paginate @images
   .span3
-
-    #sidebar
-      - @categories.each do |category|
-        .subscribe-block{:id => category.id}
-          = category.name.capitalize
-          %small
-            (
-            = category.images_count
-            )
-          - if current_user
-            - if !current_user.subscribes.where(:category_id => category.id).blank?
-              .subscribe.describe
+    - cache 'subscribes_category' do
+      #sidebar
+        - @categories.each do |category|
+          .subscribe-block{:id => category.id}
+            = category.name.capitalize
+            %small
+              (
+              = category.images_count
+              )
+            - if current_user
+              - if !current_user.subscribes.where(:category_id => category.id).blank?
+                .subscribe.describe
+              - else
+                .subscribe
             - else
               .subscribe
-          - else
-            .subscribe

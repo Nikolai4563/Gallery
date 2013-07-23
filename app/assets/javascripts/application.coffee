@@ -33,9 +33,9 @@ $(document).ready ->
   Pusher.wss_port = 8080
 
   pusher = new Pusher('1c81fd8f32b04884c7ac10a7df682973', { encrypted: false })
-  channel = pusher.subscribe('test-channel')
+  channel = pusher.subscribe('comment-channel')
 
-  channel.bind "test-event",  (response)->
+  channel.bind "comment-event",  (response)->
     date = new Date(response.comment['created_at'])
     user_name = response.user
     image_id = response.comment['image_id']
@@ -44,13 +44,14 @@ $(document).ready ->
 
   $("form#new_comment").bind("ajax:success", (evt, data, status, xhr) ->
      $('#comments h3').append('<div class="comment-block"><img src="'+data.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+data.responseJSON.author+' </span> <span class="comment-date"> Date '+data.responseJSON.date+' </span> </div> <div class="comment"> '+data.responseJSON.comment+'</div></div>')
+     $('#comment_body').val('')
   ).bind "ajax:error", (evt, data, status, xhr) ->
      $('#comments h3').after('<div class="comment-block"><img src="'+data.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+data.responseJSON.author+' </span> <span class="comment-date"> Date '+data.responseJSON.date+' </span> </div> <div class="comment"> '+data.responseJSON.comment+'</div></div>')
-
-  $('#live-chat .img-button').click ->
-    $('.chat-block').animate
-      width: "10%"
-      , 1000, ->
-      width: "100%"
+     $('#comment_body').val('')
+#  $('#live-chat .img-button').click ->
+#    $('.chat-block').animate
+#      width: "10%"
+#      , 1000, ->
+#      width: "100%"
 
 

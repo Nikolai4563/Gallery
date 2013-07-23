@@ -14,7 +14,7 @@ class FacebookController < ApplicationController
     if sign_in @user
       ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
     end
-
+    expire_fragment 'authorization'
     redirect_to root_path
 
   end

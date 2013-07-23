@@ -1,10 +1,13 @@
 class ImagesController < ApplicationController
-
+  caches_page :index
+  cache_sweeper :image_sweeper
   def index
     if params[:comment]
       @images = Image.order('comments_count DESC').page(params[:page]).per(5)
-    else
+    elsif params[:like]
       @images = Image.order('likes_count DESC').page(params[:page]).per(5)
+    else
+      @images = Image.page(params[:page]).per(5)
     end
 
     session[:return_to] = request.fullpath

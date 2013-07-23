@@ -3,11 +3,8 @@ task :add_images => :environment do
   path = Dir.new(STDIN.gets.chomp)
 
   add_categories_or_images(path)
-
-
-
-
 end
+
 def add_categories_or_images(value, parent=nil)
   value.entries.each do |element|
 

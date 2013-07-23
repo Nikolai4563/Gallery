@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
     @comment.image_id = @image.id
     if @comment.save
       ActiveSupport::Notifications.instrument("comments.create", :comment => @comment)
-      Pusher['test-channel'].trigger('test-event',comment: @comment, image: @comment.image.url, user: @comment.commentable.name)
+      Pusher['comment-channel'].trigger('comment-event',comment: @comment, image: @comment.image.url, user: @comment.commentable.name)
       flash[:notice] = 'Comment was successfully created.'
     else
       flash[:alert] = 'Comment create error.'

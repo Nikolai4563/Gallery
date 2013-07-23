@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: likes
+#
+#  id       :integer          not null, primary key
+#  user_id  :integer
+#  image_id :integer
+#
+
 class Like < ActiveRecord::Base
   belongs_to :user
   belongs_to :image, :counter_cache => true

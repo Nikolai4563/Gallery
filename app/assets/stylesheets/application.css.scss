@@ -240,20 +240,28 @@ h3.category-name {
   display: block;
   word-wrap: break-word;
 }
-.chat-block {
-  height: 300px;
-  width: 250px;
-  background-color: red;
+.events-table {
+  background-color: rgba(201, 200, 200, 0.64);
+  width: 100%;
 }
-#live-chat {
-  overflow: none;
-  position: fixed;
-    left: 0px;
-    top: 250px;
+.events-table td {
+  border: 1px solid #988A8A;
+  padding: 10px;
 }
-#live-chat .img-button {
-  position: absolute;
-    right: -37px;
-    top: 100px;
-  cursor: pointer;
-}
+//.chat-block {
+//  height: 300px;
+//  width: 250px;
+//  background-color: red;
+//}
+//#live-chat {
+//  overflow: none;
+//  position: fixed;
+//    left: 0px;
+//    top: 250px;
+//}
+//#live-chat .img-button {
+//  position: absolute;
+//    right: -37px;
+//    top: 100px;
+//  cursor: pointer;
+//}
