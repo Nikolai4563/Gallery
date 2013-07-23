@@ -1,6 +1,7 @@
 class SessionsController < Devise::SessionsController
 
   def create
+    expire_fragment 'authorization'
     super
     if user_signed_in?
       ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
@@ -14,6 +15,7 @@ class SessionsController < Devise::SessionsController
     if !user_signed_in?
       ActiveSupport::Notifications.instrument("sessions.destroy", :user => user)
     end
+    expire_fragment 'authorization'
   end
 end
 

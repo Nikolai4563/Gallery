@@ -27,6 +27,9 @@ $(document).ready ->
 
     $.ajax(
       url: "/admin/parse/save_img"
+      beforeSend: (xhr) ->
+      xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
+
       data:
         send_image: send_image
         category_id: category_id
