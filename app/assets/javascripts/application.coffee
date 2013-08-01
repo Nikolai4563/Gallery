@@ -43,14 +43,12 @@ $(document).ready ->
     $('#pusher-comment .pusher-content').append('<div class="comment" name="'+image_id+'"><span class = "author"><small>Comment by</small> '+user_name+' </span><span class = "time-send">'+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</span><span class = "body">'+response.comment['body']+'</span></div>')
 
   $("form#new_comment").bind("ajax:success", (evt, data, status, xhr) ->
-     $('#comments h3').append('<div class="comment-block"><img src="'+data.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+data.responseJSON.author+' </span> <span class="comment-date"> Date '+data.responseJSON.date+' </span> </div> <div class="comment"> '+data.responseJSON.comment+'</div></div>')
+    $('#comment_body').val('')
+    $('#comments h3').after('<div class="comment-block"><img src="'+xhr.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+xhr.responseJSON.author+' </span> <span class="comment-date"> Date '+xhr.responseJSON.date+' </span> </div> <div class="comment"> '+xhr.responseJSON.comment+'</div></div>')
   ).bind "ajax:error", (evt, data, status, xhr) ->
-     $('#comments h3').after('<div class="comment-block"><img src="'+data.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+data.responseJSON.author+' </span> <span class="comment-date"> Date '+data.responseJSON.date+' </span> </div> <div class="comment"> '+data.responseJSON.comment+'</div></div>')
+    console.log 'error'
+#    $('#comments h3').after('<div class="comment-block"><img src="'+data.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+data.responseJSON.author+' </span> <span class="comment-date"> Date '+data.responseJSON.date+' </span> </div> <div class="comment"> '+data.responseJSON.comment+'</div></div>')
 
-  $('#live-chat .img-button').click ->
-    $('.chat-block').animate
-      width: "10%"
-      , 1000, ->
-      width: "100%"
+
 
 

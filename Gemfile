@@ -6,6 +6,10 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'gon'
+gem 'rabl-rails'
+
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'devise'
@@ -21,7 +25,9 @@ gem 'curb'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'pusher'
 gem 'rmagick'
+gem 'annotate', '>=2.5.0'
 group :development do
+  gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
   gem 'html2haml'

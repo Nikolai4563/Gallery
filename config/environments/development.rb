@@ -5,7 +5,14 @@ Gallery::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+#  Bullet.growl = true
+    Bullet.rails_logger = true
+  end
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
@@ -38,7 +45,7 @@ Gallery::Application.configure do
                                           :address              => 'smtp.gmail.com',
                                           :port                 => 587,
                                           :domain               => 'mail.google.com',
-                                          :user_name            => 'emailfaceit@gmail.com',
+                                          :user_name            => 'pecenevnikolai@gmail.com',
                                           :password             => 'hiddenfile',
                                           :authentication       => :plain,
                                           :enable_starttls_auto => true

@@ -1,10 +1,7 @@
 Gallery
 ========================
 
-This application was generated with the rails_apps_composer gem:
-https://github.com/RailsApps/rails_apps_composer
-provided by the RailsApps Project:
-http://railsapps.github.io/
+This gallery allows you to create an account under which you can put or leave comments or Like the pictures that you like. You can subscribe to the new pictures. You can also go under the profile Facebook.
 
 ________________________
 

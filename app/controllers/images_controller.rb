@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
   end
   def show
     @image = Image.find(params[:id])
-    @comments = @image.comments.order('created_at DESC').page(params[:page]).per(4)
+    @comments = @image.comments.includes(:commentable).order('created_at DESC').page(params[:page]).per(4)
   end
 
 end

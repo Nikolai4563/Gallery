@@ -24,14 +24,8 @@ end
 ActiveSupport::Notifications.subscribe "process_action.action_controller" do |name, start, finish, id, payload|
   if payload[:uid]
     if (payload[:path].length < 255 )
-      @nav = Navigation.create! do |navigation|
-
-        navigation.path = payload[:path]
-        navigation.page_duration = (finish - start) * 1000
-        navigation.view_duration = payload[:view_runtime]
-        navigation.db_duration = payload[:db_runtime]
-      end
-      Event.create(:eventable_type => 'Navigation', :user_id => payload[:uid], :eventable_id => @nav.id )
+      nav =  Navigation.find_or_create_by_path(payload[:path])
+      Event.create(:eventable_type => 'Navigation', :user_id => payload[:uid], :eventable_id => nav.id )
     end
 
   end

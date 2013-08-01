@@ -6,16 +6,14 @@
       %meta{:content => content_for?(:description) ? yield(:description) : "Gallery", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
+        = include_gon
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
     #pusher-comment
       %i.icon-remove.pull-right
       .pusher-content
-    - if current_user
-      #live-chat
-        = image_tag '/liveChat.png', :class => 'img-button'
-        .chat-block
+
     .navbar.navbar-fixed-top
       %nav.navbar-inner
         .container

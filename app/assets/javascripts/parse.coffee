@@ -12,14 +12,14 @@ $(document).ready ->
 
   $('.category-select option').click ->
     category = $(this).text()
-    $(this).closest('.select-image').find('img').clone().appendTo('.category.'+category)
+    $(this).closest('.select-image').find('img').clone().appendTo('.categories.'+category)
     $(this).closest('.select-image').remove()
 
-  $('.category').on "click", "img", ->
+  $('.categories').on "click", "img", ->
     $(this).remove()
 
 
-  $('.category .send-images').on "click", ->
+  $('.categories .send-images').on "click", ->
     send_image=[]
     category_id = $(this).parent().attr('id')
     $(this).parent().find('img').each (index, val) ->
@@ -27,8 +27,6 @@ $(document).ready ->
 
     $.ajax(
       url: "/admin/parse/save_img"
-      beforeSend: (xhr) ->
-      xhr.setRequestHeader "X-CSRF-Token", $("meta[name=\"csrf-token\"]").attr("content")
 
       data:
         send_image: send_image
@@ -36,5 +34,5 @@ $(document).ready ->
       dataType: "json"
       type: "POST"
     ).success (response) ->
-      $('#'+category_id+'.category').find('img').remove()
+      $('#'+category_id+'.categories').find('img').remove()
 
