@@ -2,7 +2,8 @@
   .span7
     - @img_array.each do |img|
       .select-image.draggable
-        = image_tag img, :class => 'image'
+        = image_tag img[0], :class => 'image'
+        %input{:value => "#{img[1]}", :class => 'title-image' }
         %select.category-select
           = options_from_collection_for_select(@category, :id, :name)
   .span10

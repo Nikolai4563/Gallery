@@ -12,11 +12,12 @@ $(document).ready ->
 
   $('.category-select option').click ->
     category = $(this).text()
-    $(this).closest('.select-image').find('img').clone().appendTo('.categories-parse.'+category)
+    title = $(this).closest('.select-image').find('.title-image').val()
+    $(this).closest('.select-image').find('img').clone().attr({'alt': title}).appendTo('.categories-parse.'+category)
+
     $(this).closest('.select-image').remove()
 
   $('.categories-parse').on "click", "img", ->
-    alert('123')
     $(this).remove()
 
 
@@ -24,11 +25,10 @@ $(document).ready ->
     send_image=[]
     category_id = $(this).parent().attr('id')
     $(this).parent().find('img').each (index, val) ->
-      send_image[index] = val.src
+      send_image[index] = [val.src, val.alt]
 
     $.ajax(
       url: "/admin/parse/save_img"
-
       data:
         send_image: send_image
         category_id: category_id

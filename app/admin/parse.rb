@@ -11,30 +11,25 @@ ActiveAdmin.register_page "Parse" do
       img_array = Array.new
 
       html.css("img").each_with_index do |link, index|
-        img_array[index] = link['src']
+        img_array[index] = [link['src'], link['alt']]
       end
       @img_array = img_array
       @category = Category.all
-
-
       render :layout => 'active_admin'
     end
-
-
   end
   page_action :save_img, :method => :post do
     array_img = params[:send_image]
     array_img.each_with_index do |link|
-      curl = Curl.get(link)
+      curl = Curl.get(link[1][0])
       tempfile = Tempfile.new(Time.now.to_f.to_s)
       tempfile.write curl.body_str.force_encoding('utf-8')
-      uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => link)
-      Image.create!(:url=>uploaded_file, :category_id =>params[:category_id])
+      uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => link[1][0])
+      Image.create!(:url=>uploaded_file, :category_id =>params[:category_id], :title => link[1][1])
       expire_fragment 'subscribes_category'
       expire_fragment 'menu'
     end
     render :json => {}, :layout => false
-
   end
   content do
     semantic_form_for :parse, :builder => ActiveAdmin::FormBuilder do |f|
@@ -43,9 +38,5 @@ ActiveAdmin.register_page "Parse" do
       end
       f.actions
     end
-
-
   end
-
-
 end
