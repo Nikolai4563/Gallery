@@ -12,14 +12,15 @@ $(document).ready ->
 
   $('.category-select option').click ->
     category = $(this).text()
-    $(this).closest('.select-image').find('img').clone().appendTo('.categories.'+category)
+    $(this).closest('.select-image').find('img').clone().appendTo('.categories-parse.'+category)
     $(this).closest('.select-image').remove()
 
-  $('.categories').on "click", "img", ->
+  $('.categories-parse').on "click", "img", ->
+    alert('123')
     $(this).remove()
 
 
-  $('.categories .send-images').on "click", ->
+  $('.categories-parse .send-images').on "click", ->
     send_image=[]
     category_id = $(this).parent().attr('id')
     $(this).parent().find('img').each (index, val) ->
@@ -34,5 +35,5 @@ $(document).ready ->
       dataType: "json"
       type: "POST"
     ).success (response) ->
-      $('#'+category_id+'.categories').find('img').remove()
+      $('#'+category_id+'.categories-parse').find('img').remove()
 

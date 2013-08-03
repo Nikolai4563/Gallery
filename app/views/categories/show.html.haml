@@ -14,16 +14,9 @@
       = link_to category_path(@category.id), :class => 'btn btn-danger' do
         = t('.sorted_like')
         %i.icon-thumbs-up
-
-    - @images.each do |image|
-      .image-block
-        = link_to image_tag(image.url.url(:thumb)), image_path(image.id)
-        .image-info
-          = image.likes_count
-          %i.icon-thumbs-up
-          = image.comments_count
-          %i.icon-comment
-    = paginate @images
+    #images
+      = render 'images/images'
+    = paginate @images, :remote => true
   .span3
 
     #sidebar

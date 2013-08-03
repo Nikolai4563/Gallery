@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716171658) do
+ActiveRecord::Schema.define(:version => 20130801114311) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(:version => 20130716171658) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "index_comments_on_commentable_id_and_commentable_type"
+  add_index "comments", ["image_id"], :name => "index_comments_on_image_id"
+
   create_table "events", :force => true do |t|
     t.integer  "eventable_id"
     t.string   "eventable_type"
@@ -67,17 +70,25 @@ ActiveRecord::Schema.define(:version => 20130716171658) do
     t.datetime "created_at"
   end
 
+  add_index "events", ["eventable_id", "eventable_type"], :name => "index_events_on_eventable_id_and_eventable_type"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
   create_table "images", :force => true do |t|
     t.integer "category_id"
     t.integer "likes_count",    :default => 0
     t.integer "comments_count", :default => 0
     t.string  "url"
+    t.string  "title",          :default => "image"
   end
+
+  add_index "images", ["category_id"], :name => "index_images_on_category_id"
 
   create_table "likes", :force => true do |t|
     t.integer "user_id"
     t.integer "image_id"
   end
+
+  add_index "likes", ["user_id", "image_id"], :name => "index_likes_on_user_id_and_image_id"
 
   create_table "navigations", :force => true do |t|
     t.string "path"
@@ -101,6 +112,8 @@ ActiveRecord::Schema.define(:version => 20130716171658) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "subscribes", ["user_id", "category_id"], :name => "index_subscribes_on_user_id_and_category_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

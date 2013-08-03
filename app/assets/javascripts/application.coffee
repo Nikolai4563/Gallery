@@ -43,12 +43,17 @@ $(document).ready ->
     $('#pusher-comment .pusher-content').append('<div class="comment" name="'+image_id+'"><span class = "author"><small>Comment by</small> '+user_name+' </span><span class = "time-send">'+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</span><span class = "body">'+response.comment['body']+'</span></div>')
 
   $("form#new_comment").bind("ajax:success", (evt, data, status, xhr) ->
-    $('#comment_body').val('')
-    $('#comments h3').after('<div class="comment-block"><img src="'+xhr.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+xhr.responseJSON.author+' </span> <span class="comment-date"> Date '+xhr.responseJSON.date+' </span> </div> <div class="comment"> '+xhr.responseJSON.comment+'</div></div>')
-  ).bind "ajax:error", (evt, data, status, xhr) ->
-    console.log 'error'
-#    $('#comments h3').after('<div class="comment-block"><img src="'+data.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+data.responseJSON.author+' </span> <span class="comment-date"> Date '+data.responseJSON.date+' </span> </div> <div class="comment"> '+data.responseJSON.comment+'</div></div>')
-
-
+    if xhr.responseJSON['errors']
+      if $('.comment-form .alert').length
+        $('.comment-form .alert').html('<button type="button" class="close" data-dismiss="alert">&times;</button><strong>'+xhr.responseJSON["errors"]+'</strong>')
+      else
+        $('.comment-form').prepend('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>'+xhr.responseJSON["errors"]+'</strong></div>')
+    else
+      $('.comment-form .alert').remove()
+      $('#comment_body').val('')
+      $('#comments h3').after('<div class="comment-block"><img src="'+xhr.responseJSON.image+'"class="avatar" alt="Avatar"><div class="comment-info"><span class="comment-user"> Comment by '+xhr.responseJSON.author+' </span> <span class="comment-date"> Date '+xhr.responseJSON.date+' </span> </div> <div class="comment"> '+xhr.responseJSON.comment+'</div></div>')
+  ).bind "ajax:error", (evt, data, xhr) ->
+    if data.status == 401
+      window.location = '/users/sign_in'
 
 

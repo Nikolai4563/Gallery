@@ -2,9 +2,13 @@ class ImagesController < ApplicationController
 
   def index
     if params[:comment]
-      @images = Image.order('comments_count DESC').page(params[:page]).per(5)
+
+      @search = Image.order('comments_count DESC').page(params[:page]).per(5).ransack(params[:q])
+      @images = @search.result
     else
-      @images = Image.order('likes_count DESC').page(params[:page]).per(5)
+      @search = Image.order('likes_count DESC').page(params[:page]).per(5).ransack(params[:q])
+      @images = @search.result
+
     end
 
     session[:return_to] = request.fullpath

@@ -109,9 +109,6 @@ GEM
     fastercsv (1.5.5)
     formtastic (2.2.1)
       actionpack (>= 3.0)
-    gon (4.1.1)
-      actionpack (>= 2.3.0)
-      json
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -187,9 +184,6 @@ GEM
       signature (~> 0.1.2)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
-    rabl-rails (0.3.3)
-      activesupport (~> 3.0)
-      railties (~> 3.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -214,6 +208,10 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.11.0)
     rake (10.1.0)
+    ransack (0.7.2)
+      actionpack (~> 3.0)
+      activerecord (~> 3.0)
+      polyamorous (~> 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     responders (0.9.3)
@@ -286,7 +284,6 @@ DEPENDENCIES
   devise
   email_spec
   factory_girl_rails
-  gon
   haml-rails
   html2haml
   hub
@@ -298,8 +295,8 @@ DEPENDENCIES
   puma
   pusher
   quiet_assets
-  rabl-rails
   rails (= 3.2.13)
+  ransack
   rmagick
   rspec-rails
   sass-rails (~> 3.2.3)

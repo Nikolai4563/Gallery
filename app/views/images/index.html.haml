@@ -8,17 +8,15 @@
         = t('.sorted_like')
         %i.icon-thumbs-up
 
-    - @images.each do |image|
-      .image-block
-        = link_to image_tag(image.url.url(:thumb)), image_path(image.id)
-        .image-info
-          = image.likes_count
-          %i.icon-thumbs-up
-          = image.comments_count
-          %i.icon-comment
-    = paginate @images
+    #images
+      = render 'images'
+    = paginate @images, :remote => true
   .span3
     #sidebar
+      = search_form_for @search, :class => 'form-search' do |f|
+        .input-append
+          = f.text_field :title_cont, :class => 'span2 search-query'
+          %button.btn.btn-success{:type => "submit"} Search
       - @categories.each do |category|
         .subscribe-block{:id => category.id}
           = category.name.capitalize

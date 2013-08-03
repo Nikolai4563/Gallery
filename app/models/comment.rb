@@ -17,5 +17,5 @@ class Comment < ActiveRecord::Base
   has_many :events, :as => :eventable, :dependent => :destroy
 
   attr_accessible :body, :commentable_type, :commentable_id
-  validates_presence_of :body,:commentable_type,:commentable_id
+  validates :body,:commentable_type,:commentable_id, :image_id, :presence=> true
 end

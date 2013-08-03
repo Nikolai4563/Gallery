@@ -11,8 +11,7 @@ Gallery::Application.routes.draw do
   get '/event/:user_id/comment'       => 'events#show', :as => 'event_comment'
 
 
-
-  resources :categories, only: [:show, :index]
+  resources :categories, only: [:show]
   resources :events, only: [:show, :index]
   resources :likes, only: [:create]
   resources :subscribes, only: [:create]
@@ -22,5 +21,4 @@ Gallery::Application.routes.draw do
   root :to => 'images#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
 end

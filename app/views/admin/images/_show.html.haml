@@ -1,0 +1,30 @@
+.row
+  .span9
+    .show-image
+    = image_tag @image.url
+    = @image.category.name
+  .span6
+    #comments
+      %table
+        %tr
+          %th
+            Avatar
+          %th
+            Avtor
+          %th
+            Date
+          %th
+            Comment
+        - @comments.each do |comment|
+          %tr
+            %td
+              - if !comment.commentable.image.blank?
+                = image_tag comment.commentable.image, :class => 'avatar'
+              - else
+                = image_tag '/avatar.gif', :class => 'avatar'
+            %td
+              = comment.commentable.name
+            %td
+              = comment.created_at.strftime("%d %B %Y %H:%M")
+            %td
+              = comment.body

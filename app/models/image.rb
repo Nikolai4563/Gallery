@@ -15,7 +15,7 @@
   has_many :users, :through => :likes
   belongs_to :category, :counter_cache => true
   mount_uploader :url, ImageUploader
-  attr_accessible :url, :category_id
+  attr_accessible :url, :category_id, :title
   before_save :send_mail
 
   validates :url, :presence => true

@@ -7,8 +7,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'gon'
-gem 'rabl-rails'
+gem 'ransack'
+
+#gem 'gon'
+#gem 'rabl-rails'
 
 gem 'jquery-rails'
 gem 'bootstrap-sass'
