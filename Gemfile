@@ -29,6 +29,7 @@ gem 'pusher'
 gem 'rmagick'
 gem 'annotate', '>=2.5.0'
 group :development do
+  gem 'hirb'
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]

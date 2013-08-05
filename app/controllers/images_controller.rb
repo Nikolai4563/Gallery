@@ -10,12 +10,14 @@ class ImagesController < ApplicationController
       @images = @search.result
 
     end
-
     session[:return_to] = request.fullpath
   end
   def show
     @image = Image.find(params[:id])
     @comments = @image.comments.includes(:commentable).order('created_at DESC').page(params[:page]).per(4)
   end
-
+  def search
+    index
+    render :index
+  end
 end

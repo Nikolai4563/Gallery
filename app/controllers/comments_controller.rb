@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new, :create]
 
-
   def new
     @comment = current_user.comments.new
   end
@@ -22,7 +21,6 @@ class CommentsController < ApplicationController
       else
         format.json { render :json => {:errors => @comment.errors.full_messages }}
       end
-      format.html { redirect_to image_path(@image) }
     end
 
   end

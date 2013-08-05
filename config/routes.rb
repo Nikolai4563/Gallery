@@ -17,6 +17,9 @@ Gallery::Application.routes.draw do
   resources :subscribes, only: [:create]
   resources :images, only: [:index, :show] do
     resources :comments, only: [:new, :create]
+    collection do
+      match 'search' => 'images#search', :via => [:get, :post], :as => :search
+    end
   end
   root :to => 'images#index'
   devise_for :admin_users, ActiveAdmin::Devise.config

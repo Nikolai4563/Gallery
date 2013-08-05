@@ -1,15 +1,47 @@
 .category-select {
-  display: none;
+  width: 200px;
 }
-.select-image {
+body.active_admin li.select-image {
   display: inline-block;
+  width: 220px;
+  margin: 5px;
+}
+.image {
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 3px 1px 6px black;
+  height: 150px;
+  width: 150px;
+}
+body.active_admin li.select-image .title-image {
+  width: 200px;
+  margin: 5px auto;
+}
+body.active_admin ul.parse-list {
+  padding: 0;
+  text-align: center;
+  display: inline-block;
+  width: 700px;
+}
+.send-images {
+  margin: 5px 0;
+  display: block;
 }
 .category-select.show {
   display: block;
 }
+.categories-parse {
+  padding: 10px;
+}
+.categories-parse .image {
+  margin: 5px;
+}
 #draggable {width: 150px; height: 150px; padding: 0.5em;}
 #drappable {width: 100%; min-height: 1000px; background-color: grey;}
-
+#parse-category {
+  display: inline-block;
+  float: right;
+  width: 715px;
+}
 .categories {
   display: block;
 }

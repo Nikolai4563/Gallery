@@ -9,9 +9,9 @@ ActiveAdmin.register_page "Parse" do
       end
       html = Nokogiri::HTML(open(link,'User-Agent' => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2'), nil, 'utf-8')
       img_array = Array.new
-
+      site_url = /^(?:http:\/\/www\.|www\.|http:\/\/)?([a-zA-Z0-9.]+)/i.match(link)
       html.css("img").each_with_index do |link, index|
-        img_array[index] = [link['src'], link['alt']]
+        img_array[index] = (/^(?:http:\/\/www\.|www\.|http:\/\/)?([a-zA-Z0-9.]+)/i.match(link['src']).blank?) ? [site_url[0] + link['src'], link['alt']] : [link['src'], link['alt']]
       end
       @img_array = img_array
       @category = Category.all

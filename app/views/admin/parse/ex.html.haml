@@ -1,15 +1,16 @@
 .row
-  .span7
+  %ul.parse-list
     - @img_array.each do |img|
-      .select-image.draggable
+      %li.select-image.draggable
         = image_tag img[0], :class => 'image'
         %input{:value => "#{img[1]}", :class => 'title-image' }
         %select.category-select
           = options_from_collection_for_select(@category, :id, :name)
-  .span10
+  #parse-category
     - @category.each do |category|
       %div{:class => "categories-parse #{category.name}", :id => "#{category.id}"}
         %h3
-        = category.name
-        %span.btn.btn-primary.send-images
+          Category:
+          = category.name
+        %button.send-images
           Add this images

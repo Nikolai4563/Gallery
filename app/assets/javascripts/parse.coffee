@@ -2,19 +2,11 @@ send_image = new Array()
 category_id = 0
 $(document).ready ->
 
-  $('.image').click ->
-    if $(this).hasClass('upload')
-      $(this).removeClass('upload')
-      $(this).parent().find('.category-select').removeClass('show')
-    else
-      $(this).addClass('upload')
-      $(this).parent().find('.category-select').addClass('show')
-
   $('.category-select option').click ->
     category = $(this).text()
     title = $(this).closest('.select-image').find('.title-image').val()
-    $(this).closest('.select-image').find('img').clone().attr({'alt': title}).appendTo('.categories-parse.'+category)
-
+    image = $(this).closest('.select-image').find('img').clone().attr({'alt': title})
+    $('.categories-parse.'+category+' h3').after(image)
     $(this).closest('.select-image').remove()
 
   $('.categories-parse').on "click", "img", ->

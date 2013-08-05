@@ -17,14 +17,16 @@ describe CommentsController do
   end
   describe 'Create' do
     it "creates a new comment" do
+      sign_in @user
       expect{
-        @image.comments << FactoryGirl.create(:comment_user, :image => @image)
+        post :create,{:image_id => 1, :comment => {:body=>"123123123"}}
       }.to change(Comment,:count).by(1)
     end
 
     it "does not save the new comennt" do
+      sign_in @user
       expect{
-        @image.comments << Comment.create( :body => nil)
+        post :create,{:image_id => 1, :comment => {:body=>nil}}
       }.to change(Comment,:count).by(0)
     end
     it "Unauthorized" do

@@ -22,7 +22,6 @@ ActiveAdmin.register Image do
     render "admin/images/show"
 
   end
-
   filter :url
 
 end
