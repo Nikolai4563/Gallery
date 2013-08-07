@@ -61,4 +61,5 @@ describe Image do
     @image.send_mail
     ActionMailer::Base.deliveries.last.to.should == [@user.email]
   end
+
 end

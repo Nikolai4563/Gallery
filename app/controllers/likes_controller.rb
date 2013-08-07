@@ -7,8 +7,6 @@ class LikesController < ApplicationController
     else
       @like = current_user.likes.create(:image_id => params[:image_id])
       ActiveSupport::Notifications.instrument("likes.create", :like => @like)
-      logger.info @like
-      logger.info '@'*100
     end
     count = Like.where(:image_id => params[:image_id]).count
     render :json => {:count=> count}

@@ -8,10 +8,10 @@ group :assets do
 end
 
 gem 'ransack'
-
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 #gem 'gon'
 #gem 'rabl-rails'
-
+gem 'simplecov', :require => false, :group => :test
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'devise'
@@ -30,6 +30,7 @@ gem 'rmagick'
 gem 'annotate', '>=2.5.0'
 group :development do
   gem 'hirb'
+  gem 'fnordmetric', '>= 1.0.0'
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]
@@ -47,6 +48,8 @@ group :production do
   gem 'unicorn'
 end
 group :test do
+
+  gem 'selenium-webdriver'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'email_spec'

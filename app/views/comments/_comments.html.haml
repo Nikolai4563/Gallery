@@ -1,0 +1,15 @@
+- @comments.each do |comment|
+  .comment-block
+    - if !comment.commentable.image.blank?
+      = image_tag comment.commentable.image, :class => 'avatar'
+    - else
+      = image_tag '/avatar.gif', :class => 'avatar'
+    .comment-info
+      %span.comment-user
+        Comment by
+        = comment.commentable.name
+      %span.comment-date
+        Date
+        = comment.created_at.strftime("%d %B %Y %H:%M")
+    .comment
+      = comment.body

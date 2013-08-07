@@ -3,9 +3,7 @@
 #end
 
 ActiveSupport::Notifications.subscribe "likes.create" do |name, start, finish, id, payload|
-  puts payload[:like].inspect
-  puts ('oo')*100
-  Event.create(:eventable_type => 'Like',:eventable_id => payload[:like].id, :user_id => payload[:like].user_id)
+   Event.create(:eventable_type => 'Like',:eventable_id => payload[:like].id, :user_id => payload[:like].user_id)
 end
 
 ActiveSupport::Notifications.subscribe "comments.create" do |name, start, finish, id, payload|

@@ -17,7 +17,6 @@ describe UserMailer do
 
     #ensure that the subject is correct
     it 'renders the subject' do
-      puts @array.inspect
       @mail.subject.should == 'Welcome to My Awesome Site'
     end
 

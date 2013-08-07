@@ -16,18 +16,22 @@ describe CommentsController do
     end
   end
   describe 'Create' do
-    it "creates a new comment" do
+    it "Comment" do
+      sign_in @user
+      post :create, {:image_id => @image, :comment => {:body=>'comment'}}
+      response.should redirect_to(image_path(@image))
+    end
+    it "save the new comennt" do
       sign_in @user
       expect{
-        post :create,{:image_id => 1, :comment => {:body=>"123123123"}}
+        post :create,{:image_id => 1, :comment => {:body=>'comment'}}
       }.to change(Comment,:count).by(1)
     end
-
-    it "does not save the new comennt" do
+    it "save the new comennt" do
       sign_in @user
-      expect{
-        post :create,{:image_id => 1, :comment => {:body=>nil}}
-      }.to change(Comment,:count).by(0)
+      post :create,{:image_id => 1, :comment => {:body=>nil}}
+      body = JSON.parse(response.body)
+      body['errors'].should == ["Body can't be blank"]
     end
     it "Unauthorized" do
       post :create,{:image_id => 1, :comment => {:body=>"123123123"}}

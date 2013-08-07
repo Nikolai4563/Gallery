@@ -1,0 +1,19 @@
+%table.table
+  - @events.each do |event|
+    %tr
+      %td
+        = event.eventable_type
+      %td
+        = event.created_at
+        - case event.eventable_type
+          - when 'Navigation'
+            %td
+              = event.eventable.path
+          - when 'Like'
+            %td
+              = image_tag event.eventable.image.url, :width => 50, :height => 50
+          - when 'Comment'
+            %td
+              = image_tag event.eventable.image.url, :width => 50, :height => 50
+            %td
+              = event.eventable.body

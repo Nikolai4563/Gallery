@@ -2,10 +2,6 @@ class CommentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [:new, :create]
 
-  def new
-    @comment = current_user.comments.new
-  end
-
   def create
     @image = Image.find(params[:image_id])
     @comment = current_user.comments.build(params[:comment])
@@ -14,13 +10,10 @@ class CommentsController < ApplicationController
       ActiveSupport::Notifications.instrument('comments.create', :comment => @comment)
       Pusher['test-channel'].trigger('test-event',comment: @comment, image: @comment.image.url, user: @comment.commentable.name)
       image = @comment.commentable.image ? @comment.commentable.image : '/avatar.gif'
-    end
-    respond_to do |format|
-      if @comment.save
-        format.json { render :json => {:author => @comment.commentable.name ,:comment => @comment.body, :image => image, :date => @comment.created_at.strftime('%d %B %Y %H:%M')} }
-      else
-        format.json { render :json => {:errors => @comment.errors.full_messages }}
-      end
+      @comments = Image.find(params[:image_id]).comments.includes(:commentable).order('created_at DESC').page(params[:page]).per(4)
+      redirect_to image_path(@image)
+    else
+      render :json=>{:errors => @comment.errors.full_messages}
     end
 
   end

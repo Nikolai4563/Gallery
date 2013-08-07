@@ -17,14 +17,14 @@
       %td
         = user.name
       %td
-        = link_to t('Navigation'),event_navigation_path(user.id)
+        = link_to t('Navigation'),navigation_events_path(user.id)
       %td
-        = link_to t('Sign in'),event_sign_in_path(user.id)
+        = link_to t('Sign_in'),sign_in_events_path(user.id)
       %td
-        = link_to t('Sign out'),event_sign_out_path(user.id)
+        = link_to t('Sign_out'),sign_out_events_path(user.id)
       %td
-        = link_to t('Like'),event_like_path(user.id)
+        = link_to t('Like'),like_events_path(user.id)
       %td
-        = link_to t('Comments'),event_comment_path(user.id)
+        = link_to t('Comment'),comment_events_path(user.id)
 
 
