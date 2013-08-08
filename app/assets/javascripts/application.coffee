@@ -45,12 +45,14 @@ $(document).ready ->
   $("form#new_comment").bind("ajax:success", (evt, data, status, xhr) ->
     $(".first a").click()
 
-    $('#comment_body').val('')
+
     if data['errors'] != undefined
       if $('.comment-form .alert').length
         $('.comment-form .alert').html('<button type="button" class="close" data-dismiss="alert">&times;</button><strong>'+xhr.responseJSON["errors"]+'</strong>')
       else
         $('.comment-form').prepend('<div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>'+xhr.responseJSON["errors"]+'</strong></div>')
+    else
+      $('#comment_body').val('')
     ).bind "ajax:error", (evt, data, xhr) ->
       if data.status == 401
         window.location = '/users/sign_in'

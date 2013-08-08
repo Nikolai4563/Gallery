@@ -29,4 +29,11 @@
       UserMailer.welcome_email(array_user_email, image, category).deliver
     end
   end
-end
+
+
+  def trigger_view_event
+    FNORD_METRIC.event(attributes.merge(_type: :view_image))
+  end
+
+
+  end

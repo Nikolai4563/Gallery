@@ -15,7 +15,7 @@ describe Category do
     @image = FactoryGirl.create(:image, :category => @category)
   end
 
-  it { should have_many(:images) }
+  it { should have_many(:user) }
   it { should have_many(:subscribes) }
   it { should have_many(:users).through(:subscribes) }
 

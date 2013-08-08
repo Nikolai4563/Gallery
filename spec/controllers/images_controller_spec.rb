@@ -13,15 +13,15 @@ describe ImagesController do
     end
     it 'Sorted by Like' do
       get :index
-      assigns[:images].should == @images
+      assigns[:user].should == @images
     end
     it 'Sorted by Comment' do
       get :index, :comment => 'comment'
-      assigns[:images].should == @images.reverse
+      assigns[:user].should == @images.reverse
     end
     it 'renders the :index' do
       get :index
-      assigns(:images).to_a.should match_array @images
+      assigns(:user).to_a.should match_array @images
       response.should render_template :index
     end
     it 'assigns the @image' do
@@ -45,13 +45,13 @@ describe ImagesController do
       post :search ,:image => {:title =>'image' }
       images = Image.where("title LIKE ?",'%image%').order("created_at DESC")
       expect (images.count.should == 2 )
-      expect assigns(:images)== images
+      expect assigns(:user)== images
     end
     it 'search' do
       post :search ,:image => {:title =>'ololo' }
       images = Image.where("title LIKE ?",'%ololo%').order("created_at DESC")
       expect (images.count.should == 0 )
-      expect assigns(:images)== images
+      expect assigns(:user)== images
     end
   end
 end

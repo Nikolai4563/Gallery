@@ -34,8 +34,12 @@ class User < ActiveRecord::Base
   has_many :events, :as => :eventable, :dependent => :destroy
   has_many :subscribes
   has_many :categories, through: :subscribes
-  # Setup accessible (or protected) attributes for your model
+  has_attached_file :image, :styles => { :original => "50x50>" }, :default_url => "/avatar.gif"
+
+  #validates_attachment_presence :image
+  #validates_attachment_size :image, :less_than => 5.megabytes
+  #validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png']
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :uid, :image, :provider, :captcha, :captcha_key
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+
 
 end

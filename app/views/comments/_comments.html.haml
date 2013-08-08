@@ -1,9 +1,7 @@
 - @comments.each do |comment|
   .comment-block
-    - if !comment.commentable.image.blank?
-      = image_tag comment.commentable.image, :class => 'avatar'
-    - else
-      = image_tag '/avatar.gif', :class => 'avatar'
+    = image_tag comment.commentable.image.url, :class => 'avatar'
+
     .comment-info
       %span.comment-user
         Comment by

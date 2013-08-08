@@ -8,8 +8,8 @@ class CommentsController < ApplicationController
     @comment.image_id = @image.id
     if @comment.save
       ActiveSupport::Notifications.instrument('comments.create', :comment => @comment)
-      Pusher['test-channel'].trigger('test-event',comment: @comment, image: @comment.image.url, user: @comment.commentable.name)
-      image = @comment.commentable.image ? @comment.commentable.image : '/avatar.gif'
+      Pusher['test-channel'].trigger('test-event',comment: @comment, image: @comment.image.url, user: current_user.name)
+      image = current_user.image ? current_user.image : '/avatar.gif'
       @comments = Image.find(params[:image_id]).comments.includes(:commentable).order('created_at DESC').page(params[:page]).per(4)
       redirect_to image_path(@image)
     else

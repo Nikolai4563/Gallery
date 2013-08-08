@@ -16,11 +16,11 @@ describe CategoriesController do
     end
     it 'Sorted by Like' do
       get :show, id: @category
-      assigns[:images].should == @images
+      assigns[:user].should == @images
     end
     it 'Sorted by Comment' do
       get :show, id: @category, :comment => 'comment'
-      assigns[:images].should == @images.reverse
+      assigns[:user].should == @images.reverse
     end
     it 'show root' do
       expect(:get => "categories/#{@category.id}").to route_to(:action => 'show', :controller => 'categories', :id=>"#{@category.id}")

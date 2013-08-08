@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
   end
   def show
     @image = Image.find(params[:id])
-    FNORD_METRIC.event(@image.attributes.merge(_type: :view_image))
+    @image.trigger_view_event
     @comments = @image.comments.includes(:commentable).order('created_at DESC').page(params[:page]).per(4)
   end
   def search
