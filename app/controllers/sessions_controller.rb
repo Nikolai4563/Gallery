@@ -1,10 +1,9 @@
 class SessionsController < Devise::SessionsController
 
   def create
-    #expire_fragment 'authorization'
     super
     if user_signed_in?
-      ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
+      Resque.enqueue(SignInEvent, current_user.id)
     end
   end
 
@@ -13,9 +12,8 @@ class SessionsController < Devise::SessionsController
     super
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     if !user_signed_in?
-      ActiveSupport::Notifications.instrument("sessions.destroy", :user => user)
+      Resque.enqueue(SignOutEvent, user.id)
     end
-   # expire_fragment 'authorization'
   end
 end
 

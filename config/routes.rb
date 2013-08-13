@@ -33,7 +33,7 @@ Gallery::Application.routes.draw do
   root :to => 'images#index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-
+  mount Resque::Server, :at => '/resque'
   mount FnordMetric::WebSocket.new => "/fnordmetric/stream"
   #mount FnordMetric::WebSocket.new => "/fnordmetric/stream"
   mount FnordMetric::App => "/fnordmetric"

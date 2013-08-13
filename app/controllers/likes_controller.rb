@@ -6,7 +6,9 @@ class LikesController < ApplicationController
       like.destroy_all
     else
       @like = current_user.likes.create(:image_id => params[:image_id])
-      ActiveSupport::Notifications.instrument("likes.create", :like => @like)
+      Resque.enqueue(LikeEvent, @like.id)
+
+
     end
     count = Like.where(:image_id => params[:image_id]).count
     render :json => {:count=> count}

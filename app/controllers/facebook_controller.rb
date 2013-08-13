@@ -10,7 +10,8 @@ class FacebookController < ApplicationController
     @user.update_attribute('image', open(auth['info']['image']))
 
     if sign_in @user
-      ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
+      Resque.enqueue(SignInEvent, current_user.id)
+      #ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
     end
 
     redirect_to root_path

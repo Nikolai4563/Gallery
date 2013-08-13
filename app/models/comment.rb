@@ -19,4 +19,5 @@ class Comment < ActiveRecord::Base
   attr_accessible :body, :commentable_type, :commentable_id
   validates :body, :length => {:maximum => 255 }, :presence => true
   validates :commentable_type,:commentable_id, :image_id, :presence=> true
+
 end

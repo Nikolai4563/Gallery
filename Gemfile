@@ -9,8 +9,15 @@ end
 
 gem 'ransack'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+
 #gem 'gon'
 #gem 'rabl-rails'
+
+gem 'resque', :require => 'resque/server'
+#gem 'resque-scheduler'
+
+
+gem 'statemachine', '~> 2.2.0'
 gem 'simplecov', :require => false, :group => :test
 gem 'jquery-rails'
 gem 'bootstrap-sass'

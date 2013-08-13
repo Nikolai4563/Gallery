@@ -4,8 +4,12 @@
       %li.select-image.draggable
         = image_tag img[0], :class => 'image'
         %input{:value => "#{img[1]}", :class => 'title-image' }
-        %select.category-select
-          = options_from_collection_for_select(@category, :id, :name)
+        %span.select-category
+          Select category
+        %ul.category-select-list
+          - @category.each do |category|
+            %li.category-select-name
+              = category.name
   #parse-category
     - @category.each do |category|
       %div{:class => "categories-parse #{category.name}", :id => "#{category.id}"}

@@ -17,18 +17,12 @@ ActiveAdmin.register_page "Parse" do
       @category = Category.all
       render :layout => 'active_admin'
     end
+
   end
   page_action :save_img, :method => :post do
     array_img = params[:send_image]
-    array_img.each_with_index do |link|
-      curl = Curl.get(link[1][0])
-      tempfile = Tempfile.new(Time.now.to_f.to_s)
-      tempfile.write curl.body_str.force_encoding('utf-8')
-      uploaded_file = ActionDispatch::Http::UploadedFile.new(:tempfile => tempfile, :filename => link[1][0])
-      Image.create!(:url=>uploaded_file, :category_id =>params[:category_id], :title => link[1][1])
-      expire_fragment 'subscribes_category'
-      expire_fragment 'menu'
-    end
+    resque_params = [array_img,params[:category_id]]
+    Resque.enqueue(ImageParse, resque_params)
     render :json => {}, :layout => false
   end
   content do
