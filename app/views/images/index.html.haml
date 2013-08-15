@@ -12,24 +12,23 @@
       = render 'images'
     = paginate @images, :remote => true
   .span3
-    #sidebar
-      = search_form_for @search, :class => 'form-search' do |f|
-        .input-append
-          = f.text_field :title_cont, :class => 'span2 search-query'
-          %button.btn.btn-success{:type => "submit"} Search
-      - @categories.each do |category|
-        .subscribe-block{:id => category.id}
-          = category.name.capitalize
-          %small
-            (
-            = category.images_count
-            )
-          - if current_user
-            - if !current_user.subscribes.where(:category_id => category.id).blank?
+    - user_id = current_user ? current_user.id : nil
+    - cache "categories-caches#{user_id}" do
+      #sidebar
+        = search_form_for @search, :class => 'form-search' do |f|
+          .input-append
+            = f.text_field :title_cont, :class => 'span2 search-query'
+            %button.btn.btn-success{:type => 'submit'} Search
+        - @categories.each do |category|
+          .subscribe-block{:id => category.id}
+            = category.name.capitalize
+            %small
+              (
+              = category.images_count
+              )
+
+            - if !@subscribe.where(:category_id => category.id).blank?
               .subscribe.describe
             - else
               .subscribe
-          - else
-            .subscribe
-
 

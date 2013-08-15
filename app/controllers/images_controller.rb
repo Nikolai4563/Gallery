@@ -2,14 +2,13 @@ class ImagesController < ApplicationController
 
   def index
     if params[:comment]
-
       @search = Image.order('comments_count DESC').page(params[:page]).per(5).ransack(params[:q])
       @images = @search.result
     else
       @search = Image.order('likes_count DESC').page(params[:page]).per(5).ransack(params[:q])
       @images = @search.result
-
     end
+    @subscribe = current_user ? current_user.subscribes : nil
     session[:return_to] = request.fullpath
   end
   def show

@@ -2,13 +2,13 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 gem 'rails', '3.2.13'
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
 end
 
 gem 'ransack'
-gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'paperclip', '~> 3.0'
 
 #gem 'gon'
 #gem 'rabl-rails'
@@ -17,7 +17,7 @@ gem 'resque', :require => 'resque/server'
 #gem 'resque-scheduler'
 
 
-gem 'statemachine', '~> 2.2.0'
+gem 'statemachine'
 gem 'simplecov', :require => false, :group => :test
 gem 'jquery-rails'
 gem 'bootstrap-sass'
@@ -34,10 +34,10 @@ gem 'curb'
 gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
 gem 'pusher'
 gem 'rmagick'
-gem 'annotate', '>=2.5.0'
+gem 'annotate'
 group :development do
   gem 'hirb'
-  gem 'fnordmetric', '>= 1.0.0'
+  gem 'fnordmetric'
   gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :rbx]

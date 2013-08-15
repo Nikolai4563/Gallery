@@ -18,19 +18,17 @@
       = render 'images/images'
     = paginate @images, :remote => true
   .span3
-
-    #sidebar
-      - @categories.each do |category|
-        .subscribe-block{:id => category.id}
-          = category.name.capitalize
-          %small
-            (
-            = category.images_count
-            )
-          - if current_user
-            - if !current_user.subscribes.where(:category_id => category.id).blank?
+    - user_id = current_user ? current_user.id : nil
+    - cache "category-caches#{user_id}" do
+      #sidebar
+        - @categories.each do |category|
+          .subscribe-block{:id => category.id}
+            = category.name.capitalize
+            %small
+              (
+              = category.images_count
+              )
+            - if !@subscribe.where(:category_id => category.id).blank?
               .subscribe.describe
             - else
               .subscribe
-          - else
-            .subscribe

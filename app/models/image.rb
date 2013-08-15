@@ -30,10 +30,12 @@
     end
   end
 
+  def show_comments
 
+  end
   def trigger_view_event
     FNORD_METRIC.event(attributes.merge(_type: :view_image))
   end
 
 
-  end
+end

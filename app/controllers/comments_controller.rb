@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
     if @comment.save
       Resque.enqueue(CommentEvent, @comment.id)
       Pusher['test-channel'].trigger('test-event',comment: @comment, image: @comment.image.url, user: current_user.name)
-      #image = current_user.image ? current_user.image : '/avatar.gif'
       @comments = Image.find(params[:image_id]).comments.includes(:commentable).order('created_at DESC').page(params[:page]).per(4)
       redirect_to image_path(@image)
     else

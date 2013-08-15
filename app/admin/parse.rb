@@ -20,6 +20,7 @@ ActiveAdmin.register_page "Parse" do
 
   end
   page_action :save_img, :method => :post do
+    expire_fragment('layout-menu')
     array_img = params[:send_image]
     resque_params = [array_img,params[:category_id]]
     Resque.enqueue(ImageParse, resque_params)
@@ -27,7 +28,7 @@ ActiveAdmin.register_page "Parse" do
   end
   content do
     semantic_form_for :parse, :builder => ActiveAdmin::FormBuilder do |f|
-      f.inputs "Parse page" do
+      f.inputs 'Parse page' do
         f.input :url, :as => :string
       end
       f.actions

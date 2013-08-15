@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
   before_filter :authenticate_user!, :only => [:create]
   def create
+    expire_fragment "image#{current_user.id}"
     like = current_user.likes.where(:image_id => params[:image_id])
     if !like.blank?
       like.destroy_all

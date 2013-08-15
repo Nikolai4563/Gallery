@@ -16,7 +16,8 @@
     .navbar.navbar-fixed-top
       %nav.navbar-inner
         .container
-          = render 'layouts/navigation'
+          - cache 'layouts-navigation' do
+            = render 'layouts/navigation'
           = link_to '/auth/facebook', :class => 'facebook pull-right' do
             = image_tag '/login-with-facebook.png', :alt => 'Facebook'
     #main{:role => "main"}
@@ -25,7 +26,8 @@
           .row
             .span12
               = render 'layouts/messages'
-              = render 'menu/menu'
+              - cache 'layout-menu' do
+                = render 'menu/menu'
               = yield
     %footer
       .container

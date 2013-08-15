@@ -1,15 +1,17 @@
 .row
   .span6
-    .show-image
-      = image_tag @image.url
-      - if current_user
-        .like-block
-          %span.count-like
-            = @image.likes_count
-          - if current_user.likes.where(:image_id => @image.id).blank?
-            .likes{:id => @image.id}
-          - else
-            .likes.dislike{:id => @image.id}
+    - user_id = current_user ? current_user.id : nil
+    - cache "image#{user_id}" do
+      .show-image
+        = image_tag @image.url
+        - if current_user
+          .like-block
+            %span.count-like
+              = @image.likes_count
+            - if current_user.likes.where(:image_id => @image.id).blank?
+              .likes{:id => @image.id}
+            - else
+              .likes.dislike{:id => @image.id}
   .span6
     #comments
       %h3

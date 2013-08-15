@@ -1,6 +1,7 @@
 class FacebookController < ApplicationController
 
   def create
+    expire_fragment('layouts-navigation')
     auth = env['omniauth.auth']
 
     @user = User.find_or_create_by_uid(:uid => auth[:uid], :provider => auth[:provider],
