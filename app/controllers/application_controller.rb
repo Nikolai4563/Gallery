@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SimpleCaptcha::ControllerHelpers
-  #before_filter :select_category
+  before_filter :select_category
 
   def append_info_to_payload(payload)
     super
