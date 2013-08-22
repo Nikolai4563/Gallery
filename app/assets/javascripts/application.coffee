@@ -23,19 +23,19 @@ $(document).ready ->
   $('#pusher-comment').on "click",'.comment', ->
     image_id = $(this).attr('name')
     window.location = '/images/'+image_id
-  Pusher.host = '127.0.0.1'
-  Pusher.ws_port = 8080
-  Pusher.wss_port = 8080
-
-  pusher = new Pusher('1c81fd8f32b04884c7ac10a7df682973', { encrypted: false })
-  channel = pusher.subscribe('test-channel')
-
-  channel.bind "test-event",  (response)->
-    date = new Date(response.comment['created_at'])
-    user_name = response.user
-    image_id = response.comment['image_id']
-    $('#pusher-comment').show()
-    $('#pusher-comment .pusher-content').append('<div class="comment" name="'+image_id+'"><span class = "author"><small>Comment by</small> '+user_name+' </span><span class = "time-send">'+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</span><span class = "body">'+response.comment['body']+'</span></div>')
+#  Pusher.host = '127.0.0.1'
+#  Pusher.ws_port = 8080
+#  Pusher.wss_port = 8080
+#
+#  pusher = new Pusher('1c81fd8f32b04884c7ac10a7df682973', { encrypted: false })
+#  channel = pusher.subscribe('test-channel')
+#
+#  channel.bind "test-event",  (response)->
+#    date = new Date(response.comment['created_at'])
+#    user_name = response.user
+#    image_id = response.comment['image_id']
+#    $('#pusher-comment').show()
+#    $('#pusher-comment .pusher-content').append('<div class="comment" name="'+image_id+'"><span class = "author"><small>Comment by</small> '+user_name+' </span><span class = "time-send">'+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()+'</span><span class = "body">'+response.comment['body']+'</span></div>')
 
   $("form#new_comment").bind("ajax:success", (evt, data, status, xhr) ->
     $(".first a").click()

@@ -12,7 +12,7 @@
  *= require_tree .
 */
 body {
-  background: url('/fon.jpg');
+  background: url('./fon.jpg');
 }
 .content {
   padding: 20px;
@@ -78,7 +78,7 @@ footer {
   margin-bottom: 35px;
 }
 .subscribe-block .subscribe {
-  background-image: url('/subscribe.png');
+  background-image: url('./subscribe.png');
   position: absolute;
     top: -16px;
     left: -30px;
@@ -89,7 +89,7 @@ footer {
   -o-transition: left 0.5s ease-out;
 }
 .subscribe-block .subscribe.describe {
-  background-image: url('/describe.png');
+  background-image: url('./describe.png');
     left: 225px;
   -webkit-transition: left 0.5s ease-out;
   -moz-transition: left 0.5s ease-out;
@@ -133,7 +133,7 @@ footer {
   opacity: 1;
 }
 .likes {
-  background-image: url('/like.png');
+  background-image: url('./like.png');
   display: block;
   cursor: pointer;
   float: left;
@@ -151,7 +151,7 @@ footer {
   padding: 10px;
 }
 .likes.dislike {
-  background-image: url('/dislike.png');
+  background-image: url('./dislike.png');
 }
 .comment-block {
   border-radius: 10px 10px 10px 10px;

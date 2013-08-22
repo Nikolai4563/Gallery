@@ -1,8 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-#require 'rack/handler'
-#Rack::Handler::WEBrick = Rack::Handler.get(:puma)
+require 'rack/handler'
+Rack::Handler::WEBrick = Rack::Handler.get(:puma)
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -15,15 +15,16 @@ module Gallery
   class Application < Rails::Application
 
     # don't generate RSpec tests for views and helpers
-    config.generators do |g|
-      
+    true_class = config.generators do |g|
+
       g.test_framework :rspec, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
-      
-      
+
+
       g.view_specs false
       g.helper_specs false
     end
+    true_class
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
