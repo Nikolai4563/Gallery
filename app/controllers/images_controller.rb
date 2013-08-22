@@ -1,7 +1,4 @@
 class ImagesController < ApplicationController
-  def showcase
-    @images = Image.all
-  end
   def index
     if params[:comment]
       @search = Image.order('comments_count DESC').page(params[:page]).per(5).ransack(params[:q])
