@@ -1,4 +1,4 @@
-require "fnordmetric"
-FNORD_METRIC = FnordMetric::API.new
+#require "fnordmetric"
+#FNORD_METRIC = FnordMetric::API.new
 
 
