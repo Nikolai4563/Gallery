@@ -47,7 +47,6 @@ db/*.sqlite3
 /capybara-*.html
 /gems
 /specifications
-fnordmetric_api.rb
 rerun.txt
 pickle-email-*.html
 
