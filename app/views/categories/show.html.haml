@@ -28,7 +28,7 @@
               (
               = category.images_count
               )
-            - if !@subscribe.where(:category_id => category.id).blank?
+            - if @subscribe && !@subscribe.where(:category_id => category.id).blank?
               .subscribe.describe
             - else
               .subscribe
