@@ -7,34 +7,34 @@ group :assets do
   gem 'uglifier'
 end
 
-#gem 'ransack'
-#gem 'paperclip', '~> 3.0'
-#
-##gem 'gon'
-##gem 'rabl-rails'
-#
+gem 'ransack'
+gem 'paperclip', '~> 3.0'
+
+#gem 'gon'
+#gem 'rabl-rails'
+
 #gem 'resque', :require => 'resque/server'
-##gem 'resque-scheduler'
-#
-#
-#gem 'statemachine'
-#gem 'simplecov', :require => false, :group => :test
-#gem 'jquery-rails'
-#gem 'bootstrap-sass'
-#gem 'devise'
-#gem 'haml-rails'
-#gem 'pg'
-#gem 'simple_form'
-#gem 'carrierwave'
-#gem 'kaminari'
-#gem 'omniauth-facebook'
-#gem 'nokogiri'
-#gem 'activeadmin'
-#gem 'curb'
-#gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
-#gem 'pusher'
-#gem 'rmagick'
-#gem 'annotate'
+#gem 'resque-scheduler'
+
+
+gem 'statemachine'
+gem 'simplecov', :require => false, :group => :test
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'haml-rails'
+gem 'pg'
+gem 'simple_form'
+gem 'carrierwave'
+gem 'kaminari'
+gem 'omniauth-facebook'
+gem 'nokogiri'
+gem 'activeadmin'
+gem 'curb'
+gem 'simple_captcha', :git => 'git://github.com/galetahub/simple-captcha.git'
+gem 'pusher'
+gem 'rmagick'
+gem 'annotate'
 group :development do
   gem 'hirb'
   gem 'fnordmetric'
