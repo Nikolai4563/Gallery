@@ -52,7 +52,7 @@ group :development, :test do
   gem 'shoulda-matchers'
 end
 group :production do
-  gem 'unicorn'
+  gem 'thin'
 end
 group :test do
 
