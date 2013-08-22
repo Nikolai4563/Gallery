@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  def index
+    @categories = Categories.all
+  end
   def show
     @category = Category.find(params[:id])
     @subscribe = current_user ? current_user.subscribes : nil
@@ -8,5 +11,4 @@ class CategoriesController < ApplicationController
       @images = @category.images.order('likes_count DESC').page(params[:page]).per(5)
     end
   end
-
 end

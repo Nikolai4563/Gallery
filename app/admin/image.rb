@@ -18,10 +18,7 @@ ActiveAdmin.register Image do
     end
   end
   show do |img|
-
-    render "admin/images/show"
-
+    render 'admin/images/show'
   end
   filter :url
-
 end

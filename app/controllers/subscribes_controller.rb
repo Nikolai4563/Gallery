@@ -3,15 +3,15 @@ class SubscribesController < ApplicationController
   def create
     expire_fragment "categories-caches#{current_user.id}"
     expire_fragment "category-caches#{current_user.id}"
-    subscribe = current_user.subscribes.where(:category_id => params[:category_id])
-
+    subscribe = current_user.subscribes.find_by_category_id(params[:category_id])
     if !subscribe.blank?
-      subscribe.destroy_all
+      category_name = "You describe #{subscribe.category.name}"
+      subscribe.destroy
     else
-      @subscribe = current_user.subscribes.create(:category_id => params[:category_id])
+      subscribe = current_user.subscribes.create(:category_id => params[:category_id])
+      category_name = "You subscribe #{subscribe.category.name}"
     end
-
-    render :json => {}
+    render :json => {:success => category_name}
 
   end
 end

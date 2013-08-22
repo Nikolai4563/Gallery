@@ -9,6 +9,7 @@ $(document).ready ->
       type: "POST"
       success: (response) ->
         $(event.currentTarget).find('.subscribe').toggleClass('describe')
+        alert response.success
       error: (xhr, status) ->
         if xhr.status == 401
           window.location = '/users/sign_in'

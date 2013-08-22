@@ -3,6 +3,15 @@
 
 en:
   hello: "Hello world"
+  layouts:
+    _navigation:
+      gallery: 'Gallery'
+      logout: 'Logout'
+      login: 'Login'
+      edit_account: 'Edit account'
+      sign_up: 'Sign up'
+    application:
+      footer_info: 'Designed and built with all the love in the world by Nikolai'
   categories:
     show:
       category_name: 'Category name:'
@@ -13,4 +22,22 @@ en:
       category_name: 'Category name:'
       sorted_comment: 'Sorted by comments'
       sorted_like: 'Sorted by likes'
-
+    show:
+      comments: 'Comments'
+  comments:
+    _comments:
+      comment_by: 'Comment by:'
+      date: 'Date:'
+  events:
+    index:
+      user: 'User'
+      navigation: 'Navigation'
+      sign_in: 'Sign in'
+      sign_out: 'Sign out'
+      like: 'Like'
+      comment: 'Comment'
+  menu:
+    _menu:
+      all_images: 'All images'
+      categories: 'Categories'
+      events: 'Events'

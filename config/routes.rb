@@ -21,7 +21,7 @@ Gallery::Application.routes.draw do
   end
 
 
-  resources :categories, only: [:show]
+  resources :categories, only: [:show, :index]
   resources :likes, only: [:create]
   resources :subscribes, only: [:create]
   resources :images, only: [:index, :show] do

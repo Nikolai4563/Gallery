@@ -4,10 +4,10 @@
 
     .comment-info
       %span.comment-user
-        Comment by
+        = t('.comment_by')
         = comment.commentable.name
       %span.comment-date
-        Date
+        = t('.date')
         = comment.created_at.strftime("%d %B %Y %H:%M")
     .comment
       = comment.body

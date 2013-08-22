@@ -9,5 +9,4 @@ class ImageParse
       Image.create!(:url=>uploaded_file, :category_id =>resque_params[1], :title => link[1][1])
     end
   end
-
 end

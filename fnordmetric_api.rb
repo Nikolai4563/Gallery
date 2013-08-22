@@ -1,4 +1,4 @@
-require "fnordmetric"
+require 'fnordmetric'
 
 FnordMetric.namespace :gallery do
   hide_active_users
@@ -7,7 +7,6 @@ FnordMetric.namespace :gallery do
   gauge :image_views_per_second
   event :view_image do
     observe :popular_images, data[:url]
-    #incr :image_views_per_second
   end
 end
 

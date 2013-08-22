@@ -16,11 +16,6 @@
 #= require pusher
 #= require_tree .
 
-window.location.hash = ""  if window.location.hash is "#_=_"
-
-
-  #this assumes the action returns an HTML snippet
-
 $(document).ready ->
 
   $('#pusher-comment .icon-remove').click ->
@@ -56,5 +51,3 @@ $(document).ready ->
     ).bind "ajax:error", (evt, data, xhr) ->
       if data.status == 401
         window.location = '/users/sign_in'
-
-#
