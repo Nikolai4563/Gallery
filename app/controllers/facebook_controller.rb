@@ -10,10 +10,10 @@ class FacebookController < ApplicationController
                                        :email => "#{auth[:provider]}@#{auth[:extra][:raw_info][:name].delete ' '}.com")
     @user.update_attribute('image', open(auth['info']['image']))
 
-    if sign_in @user
-      Resque.enqueue(SignInEvent, current_user.id)
-      #ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
-    end
+    #if sign_in @user
+    #  Resque.enqueue(SignInEvent, current_user.id)
+    #  #ActiveSupport::Notifications.instrument("sessions.create", :user => current_user)
+    #end
 
     redirect_to root_path
 
