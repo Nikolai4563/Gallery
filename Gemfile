@@ -13,7 +13,7 @@ gem 'paperclip', '~> 3.0'
 #gem 'gon'
 #gem 'rabl-rails'
 
-#gem 'resque', :require => 'resque/server'
+gem 'resque', :require => 'resque/server'
 #gem 'resque-scheduler'
 
 
